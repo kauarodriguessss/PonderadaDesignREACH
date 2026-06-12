@@ -52,6 +52,12 @@ Nos artefatos do GitLab, nao aparece um uso consistente de Storybook, regressao 
 
 Tambem da para enxergar sinais de fadiga operacional nos MRs fechados sem merge, nas pipelines falhando e nos casos em que o gate precisou ser flexibilizado. Para mim, isso nao significa falta de compromisso do time. Significa que a burocracia ficou cara demais para o contexto. O plano tentou aplicar praticas de mercado, mas sem adaptar o suficiente para a carga mental de estudantes no meio de sprint, prova, prazo e varias disciplinas ao mesmo tempo.
 
+Aqui tambem entra uma evidencia pessoal que eu considero importante para a lente de **Health**. Perto da entrega, eu precisei virar noites para fechar partes do projeto que ainda estavam pendentes, e isso teve impacto direto na minha saude. Como evidencia privada, tenho um atestado medico emitido no dia 11/06/2026, bem proximo da entrega da sprint. Eu nao estou usando isso para expor ninguem do grupo nem para transformar a auditoria em desabafo, mas para mostrar que o problema de Health nao ficou so no campo teorico. A sobrecarga operacional saiu do planejamento e chegou no corpo.
+
+Essa parte, para mim, e uma das mais importantes da auditoria. Quando o DesignOps e saudavel, ele distribui melhor o trabalho, deixa o fluxo claro e evita que uma pessoa precise segurar tudo no ultimo momento. Quando ele falha, o processo ate pode parecer bonito no documento, mas a execucao real vira concentracao de responsabilidade, noites sem dormir e pressao acumulada. Foi isso que aconteceu em alguns momentos do modulo.
+
+O ponto mais critico e que o plano media muita coisa tecnica, mas quase nao media risco humano. Ele falava de pipeline, checklist, validacao e qualidade, mas nao tinha um mecanismo simples para perceber que uma pessoa estava acumulando responsabilidade demais. Para mim, esse foi o maior erro de DesignOps: tratar saude do time como um ritual separado, e nao como um sinal operacional que deveria acender alerta dentro da sprint.
+
 ### O que eu cortaria do plano
 
 Se eu pudesse reescrever o plano de DesignOps com a maturidade que o grupo tem agora, eu cortaria ou simplificaria estes pontos:
@@ -98,6 +104,36 @@ Isso manteria o valor do DesignOps sem transformar o processo em uma segunda ent
 
 ---
 
+## Diagnostico de maturidade REACH
+
+Para deixar a auditoria menos subjetiva, eu montei uma nota de maturidade de 1 a 5 para cada pilar. Nao e uma metrica oficial do artigo, mas ajuda a transformar a leitura em um diagnostico mais comparavel.
+
+| Pilar | Nota | Leitura |
+|---|---:|---|
+| Results | 3/5 | O grupo conseguiu mostrar resultados tecnicos, principalmente pelo scorecard. O problema e que esses resultados ainda nao provavam melhoria real de experiencia para a parceira. |
+| Efficiency | 2/5 | A esteira ajudou a controlar qualidade, mas tambem gerou muito retrabalho. Pipelines falhando e tentativas repetidas de merge mostram que o fluxo ainda era pesado. |
+| Ability | 2/5 | O time aprendeu durante o processo, mas a quantidade de problemas na validacao de commits mostrou que a habilidade tecnica exigida era maior do que a habilidade disponivel no momento. |
+| Clarity | 2/5 | Havia intencao de clareza, mas parte das evidencias ficou local/manual e nem toda decisao ficou registrada de forma auditavel. |
+| Health | 1/5 | Foi o ponto mais fraco. O plano tinha rituais e checklists demais para a capacidade real do grupo, e a sobrecarga chegou a gerar impacto pessoal de saude. |
+
+Essa leitura muda um pouco a conclusao geral. O grupo nao falhou por falta de vontade. Ele falhou porque tentou operar um DesignOps mais maduro do que a estrutura do time permitia. O plano parecia bom isoladamente, mas nao tinha mecanismos suficientes para detectar gargalo, redistribuir carga e simplificar processo antes que a situacao virasse retrabalho ou desgaste.
+
+---
+
+## Triangulacao final
+
+O ponto central do REACH e nao olhar uma metrica sozinha. Por isso, eu cruzei tres tipos de evidencias: tecnica, operacional e humana.
+
+| Tipo de evidencia | O que apareceu | O que isso indica |
+|---|---|---|
+| Tecnica | Pipelines falhando, validacao de commits quebrando e execucoes locais de teste | A automacao existia, mas ainda nao estava madura o suficiente para sustentar o fluxo sem retrabalho. |
+| Operacional | MRs fechados sem merge, gates flexibilizados e checklist maior que o uso real | O processo planejado nao cabia totalmente na rotina do grupo. |
+| Humana | Sobrecarga perto da entrega e atestado medico privado de 11/06/2026 | O custo do processo nao ficou so no projeto; ele atingiu a saude de quem estava segurando parte da entrega. |
+
+Essa triangulacao e importante porque evita uma conclusao rasa. Se eu olhasse so para o plano, poderia dizer que o grupo tinha DesignOps bem estruturado. Se eu olhasse so para os MRs, poderia dizer que era apenas problema tecnico de CI. Mas quando junto pipeline, retrabalho e saude, a conclusao fica mais forte: o processo estava tentando compensar falta de maturidade com mais regra, e isso aumentou o custo humano da entrega.
+
+---
+
 ## O que eu manteria, ajustaria e cortaria
 
 Para ir alem da critica, eu separo o plano em tres grupos: o que vale manter, o que precisa ser ajustado e o que deveria ser cortado.
@@ -117,6 +153,22 @@ Minha proposta final seria um DesignOps bem mais simples: cada MR precisaria ter
 
 ---
 
+## Plano de recuperacao para a proxima sprint
+
+Se eu fosse transformar essa auditoria em acao, eu nao tentaria consertar tudo de uma vez. Eu faria um plano de recuperacao pequeno, com foco em reduzir atrito.
+
+| Problema | Acao simples | Como eu mediria |
+|---|---|---|
+| Pipeline falha e ninguem entende rapido o motivo | Melhorar as mensagens de erro dos jobs principais | Menos tempo entre pipeline falhar e alguem corrigir. |
+| Checklist unico para qualquer entrega | Criar checklist por tipo de MR | Menos itens irrelevantes em cada revisao. |
+| Execucao local usada como evidencia principal | Fazer a pipeline gerar os artefatos principais | Mais MRs com evidencia automatica anexada. |
+| Trabalho concentrado em poucas pessoas | Colocar dono e co-dono em cada entrega | Menos tarefas sem responsavel claro perto do prazo. |
+| Sobrecarga aparece tarde demais | Criar um check-in assincrono de carga toda semana | Bloqueios e excesso de trabalho aparecendo antes da vespera. |
+
+Para mim, o ponto principal seria trocar a pergunta "o processo foi seguido?" por "o processo ajudou a entregar sem quebrar ninguem?". Essa mudanca parece pequena, mas muda o DesignOps inteiro. O foco deixa de ser cumprir ritual e passa a ser remover atrito real.
+
+---
+
 ## Linha de base para uma proxima sprint
 
 Se o grupo fosse continuar o projeto, eu usaria esta auditoria como linha de base. Em vez de tentar medir tudo, eu escolheria poucos sinais:
@@ -130,6 +182,14 @@ Se o grupo fosse continuar o projeto, eu usaria esta auditoria como linha de bas
 | Bloqueios repetidos | Agrupar falhas por tipo | Ajuda a decidir onde simplificar o processo. |
 
 Essas metricas sao mais simples do que o plano original, mas seriam mais honestas para a realidade do grupo. Elas tambem seguem a ideia de triangulacao do REACH: nenhuma metrica sozinha prova tudo, mas varias apontando para o mesmo lado mostram se o processo esta melhorando ou piorando.
+
+---
+
+## Limites da auditoria
+
+Um limite importante desta auditoria e que nem tudo que aconteceu no grupo ficou registrado no GitLab. Algumas decisoes, combinados e momentos de sobrecarga aconteceram fora do repositorio, em conversa, mensagem ou na rotina individual de cada integrante. Por isso, eu tratei o GitLab como fonte principal para evidencias tecnicas e usei a evidencia pessoal de saude apenas na parte de **Health**, sem publicar o documento medico no repositorio por ser um dado sensivel.
+
+Isso tambem mostra uma falha de DesignOps: se o processo dependia de alinhamentos fora do fluxo oficial, mas esses alinhamentos nao viravam registro, o grupo perdia rastreabilidade. No fim, a ausencia de algumas evidencias tambem e uma evidencia. Ela mostra que o plano prometia clareza, mas a execucao real ainda deixava muita coisa importante fora dos artefatos do projeto.
 
 ---
 
@@ -159,3 +219,4 @@ Se essas tres perguntas estivessem mais bem resolvidas desde o inicio, o grupo t
 - Avaliacao da Sprint 3 integrada com pipeline falhando: https://git.inteli.edu.br/graduacao/2026-1b/t13/g05/-/merge_requests/59
 - Merge requests fechados: https://git.inteli.edu.br/graduacao/2026-1b/t13/g05/-/merge_requests?state=closed
 - Merge requests integrados: https://git.inteli.edu.br/graduacao/2026-1b/t13/g05/-/merge_requests?state=merged
+- Evidencia pessoal de Health: atestado medico privado de 11/06/2026, citado na auditoria sem publicacao do arquivo por conter dado sensivel.
